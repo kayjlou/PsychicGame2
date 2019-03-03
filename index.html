@@ -9,22 +9,29 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <div class="game">
-      <div class="header">
-        <h1>The Psychic Game</h1>
-        <span id="text">
-          Guess any letter to see if you can read the computer's mind
-        </span>
-      </div>
+    <!-- title of page -->
+    <h1>The Psychic Game</h1>
 
-      <div class="score">
-        <span id="wins"></span>
-        <span id="losses"></span>
-        <span id="guesses"></span>
-        <span id="result"></span>
-      </div>
+    <!-- Explains direction of game -->
+    <p id="text">
+      Guess any letter to see if you can read the computer's mind
+    </p>
+
+    <!-- Holds all the score elements -->
+    <div class="score">
+      <!-- Counts the wins, begins at zero -->
+      <p>Wins: <span id="wins">0</span></p>
+
+      <!-- Counts the losses, begins at zero -->
+      <p>Losses: <span id="losses">0</span></p>
+
+      <!-- Shows the remaining guesses, starts at 5 -->
+      <p>Guesses Left: <span id="losses">5</span></p>
+
+      <!-- Shows the letters guessed so far -->
+      <p>Letters guessed so far: <span id="guesses"></span></p>
     </div>
 
-    <script src="assets/javascript/game.js"></script>
+    <script type"text/javascript" src="assets/javascript/game.js"></script>
   </body>
 </html>
