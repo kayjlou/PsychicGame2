@@ -1,57 +1,84 @@
 //Letters that computer can choose from
-var letters = ["a", "b", "c", "d", "k", "j"];
+let letters = ["a", "b", "c", "d", "k", "j"];
 
-//Function for computer to get a random letter
-const getRandom = () => {
-  let computerGuess = letters[Math.floor(Math.random() * letters.length)];
-  console.log("computer guess:" + computerGuess);
-  //creates a list element for computer guess
+//Array that holds letters that are guessed
+let lettersGuessed = [];
+
+let computerGuess = null;
+
+//Initialize guessesLeft
+let guessesLeft = 5;
+
+//Initialize wings & losses
+let wins = 0;
+let losses = 0;
+
+//function updates the remaining guesses
+const updateGuessesLeft = () => {
+  document.querySelector("#guessesLeft").innerHTML = guessesLeft;
 };
 
-//Initial of random letter
-
-//Initial all resets and intial valures
-const init = _ => {
-  guesses: 5;
-  document.querySelector("#guesses").textContent = guesses;
-  //Other reset functions
+// function to generate random letter
+const getRandLetter = () => {
+  computerGuess = letters[Math.floor(Math.random() * letters.length)];
 };
+
+//Update arry of hat user has guessed
+const updateLettersGuessed = () => {
+  document.querySelector("#guesses").innerHTML = lettersGuessed.join(", ");
+};
+
+//Function to reset everything
+const reset = () => {
+  guessesLeft = 5;
+  lettersGuessed = [];
+  getRandLetter();
+  updateGuessesLeft();
+  updateLettersGuessed();
+};
+//Run when page is loaded
+getRandLetter();
+updateGuessesLeft();
 
 //When key is pressed computer generates random letter
-document.onkeyup = function(event) {
-  var lettersGuessed = [];
+document.onkeydown = function(event) {
+  console.log(computerGuess);
+
+  //Decrease guess by one
+  guessesLeft--;
+
+  //Set userGuess as what key is pressed
   var userGuess = event.key;
+
   console.log("user guess:" + userGuess);
+
+  //Push to array what user has already guessed
   lettersGuessed.push(userGuess);
   console.log(lettersGuessed);
 
+  //Run update functions
+  updateGuessesLeft();
+  updateLettersGuessed();
+
   // document.querySelector("#guesses").append(lettersGuessed + " ");
-};
 
-//Function to check userGuess === computerGUess
-checkGuesses = () => {
-  if (userGuess === computerGuess) {
-    updateWins();
-  } else {
-    updateLosses();
+  //check userGuess === computerGuess
+  if (userGuess === computerGuess && typeof userGuess === "string") {
+    //Increase wins and update HTML
+    wins++;
+    document.querySelector("#wins").innerHTML = wins;
+
+    //Once they Win reset the game
+    reset();
   }
-};
 
-//Function to update losses
-updateLosses = () => {
-  losses++;
-};
+  //If they run out of guesses
+  if (guessesLeft === 0) {
+    //Update losses and reflect in html
+    losses++;
+    document.querySelector("#losses").innerHTML = losses;
 
-//Funtion to update wins
-updateWins = () => {
-  wins++;
-};
-
-//Function to Restart game
-resetGame = () => {
-  lettersGuessed = [];
-  guesses = 5;
-  wins = 0;
-  losses = 0;
-  getRandom();
+    //Then reset
+    reset();
+  }
 };
