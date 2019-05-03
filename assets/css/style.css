@@ -21,3 +21,34 @@
    border: black solid 5px;
    padding: 15px;
  }
+
+ .ball {
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   -ms-border-radius: 50%;
+   -o-border-radius: 50%;
+   background-color: white;
+   animation: bounce 0.5s;
+   animation-direction: alternate;
+   animation-iteration-count: infinite;
+ }
+
+ @keyframes bounce {
+   from {
+     transform: translate3d(0, 0, 0):;
+     -webkit-transform: translate:;
+     -moz-transform: translate:;
+     -ms-transform: translate:;
+     -o-transform: translate:;
+   }
+   to {
+     transform: translate3d(0, 200px, 0);
+     -webkit-transform: translate3d(0, 200px, 0);
+     -moz-transform: translate3d(0, 200px, 0);
+     -ms-transform: translate3d(0, 200px, 0);
+     -o-transform: translate3d(0, 200px, 0);
+   }
+ }
