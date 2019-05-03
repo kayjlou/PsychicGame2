@@ -1,5 +1,31 @@
 //Letters that computer can choose from
-let letters = ["a", "b", "c", "d", "k", "j"];
+let letters = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "x",
+  "y",
+  "z"
+];
 
 //Array that holds letters that are guessed
 let lettersGuessed = [];
@@ -23,7 +49,7 @@ const getRandLetter = () => {
   computerGuess = letters[Math.floor(Math.random() * letters.length)];
 };
 
-//Update arry of hat user has guessed
+//Update array if user has guessed
 const updateLettersGuessed = () => {
   document.querySelector("#guesses").innerHTML = lettersGuessed.join(", ");
 };
@@ -45,17 +71,21 @@ document.onkeydown = function(event) {
   console.log(computerGuess);
 
   //Decrease guess by one
-  guessesLeft--;
 
   //Set userGuess as what key is pressed
-  var userGuess = event.key;
+  let userGuess = event.key;
 
   console.log("user guess:" + userGuess);
 
-  //Push to array what user has already guessed
-  lettersGuessed.push(userGuess);
-  console.log(lettersGuessed);
+  //Added check if they already guessed letter
+  let check = lettersGuessed.includes(userGuess);
 
+  //Push to array what user has already guessed if it is a valid letter and not already guessed
+  if (letters.includes(userGuess) && check === false) {
+    lettersGuessed.push(userGuess);
+    console.log(lettersGuessed);
+    guessesLeft--;
+  }
   //Run update functions
   updateGuessesLeft();
   updateLettersGuessed();
